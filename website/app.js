@@ -1,7 +1,7 @@
 // G-Vars
 
 let baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
-let key = "4fe7af38da93b1a5e4ed889c23e8ef65";
+let key = "4fe7af38da93b1a5e4ed889c23e8ef65&units=imperial";
 
 // Inst-Creation
 
@@ -21,7 +21,7 @@ function performAction(e) {
   getTemperature(baseURL, postCode, key).then(function (data) {
     // post-Request "Data"
 
-    postData("http://localhost:3030/addWeatherData", {
+    postData("http://localhost:8081/addWeatherData", {
       temperature: data.main.temp,
       date: newDate,
       user_response: feelings,
@@ -73,7 +73,7 @@ const postData = async (url = "", data = {}) => {
 // updating-UI
 
 const updateUI = async () => {
-  const request = await fetch("http://localhost:3030/all");
+  const request = await fetch("http://localhost:8081/all");
   try {
     const allData = await request.json();
     console.log("TRECIAS");
